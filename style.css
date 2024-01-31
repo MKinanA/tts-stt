@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --bg: 191, 191, 191;
+    --object-bg: 223, 223, 223;
+    --text-color: 63, 63, 63;
+    --main: 0, 0, 0;
+}
+
+* {
+    font-family: Rubik, Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+*::selection {
+    background: rgba(var(--text-color), 1);
+    color: rgba(var(--object-bg), 1);
+}
+
+*::-webkit-scrollbar {
+    margin-right: 4px;
+    width: 8px;
+}
+*::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0); 
+}
+*::-webkit-scrollbar-thumb {
+    background: rgba(var(--text-color), 0.25);
+    border-radius: 4px;
+}
+*::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--text-color), 0.5); 
+}
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(var(--bg), 1);
+}
+
+main {
+    width: 96vmin;
+    height: 96vmin;
+    margin: 0;
+    padding: 2vmin;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2vmin;
+}
+
+h1, h2, h3, h4, h5, h6, p, .container, button {
+    background: rgba(var(--object-bg), 1);
+    padding: 0.125em 0.25em;
+    border-radius: 0.25em;
+    border: none;
+    color: rgba(var(--text-color), 1);
+}
+
+h1,h2,h3,h4,h5,h6{font-weight: 800;}
+h1{font-size: 5vmin;}
+h2{font-size: 4.5vmin;}
+h3{font-size: 4vmin;}
+h4{font-size: 3.5vmin;}
+h5{font-size: 3vmin;}
+h6{font-size: 2.5vmin;}
+p{font-size: 2vmin; font-weight: 600;}
+button {font-size: 2vmin; font-weight: 800;}
+
+h1 {
+    text-align: center;
+}
+
+#text {
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    font-size: 4vmin;
+}
+
+#text.empty {
+    color: rgba(var(--text-color), 0.75);
+}
+
+#info {
+    text-align: center;
+    font-size: 3vmin;
+}
+
+p b {
+    font-weight: 800;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: 63, 63, 63;
+        --object-bg: 31, 31, 31;
+        --text-color: 191, 191, 191;
+        --main: 255, 255, 255;
+    }
+}
