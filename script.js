@@ -60,6 +60,7 @@ function tts(called_time) {
 };
 
 function stt() {
+    let record_success = false;
     heading.innerHTML = 'Speech to Text';
     status.innerHTML = 'Merekam input...';
     sro = new SpeechRecognition();
@@ -67,6 +68,8 @@ function stt() {
     let utterance = new SpeechSynthesisUtterance();
     utterance.lang = 'id';
     sro.onresult = event => {
+        speechSynthesis.cancel();
+        record_success = true;
         output = event.results[0][0].transcript;
         navigator.clipboard.writeText(output)
         .then(result => {console.log(`successfully wrote text to clipboard, ${result}`)})
@@ -78,22 +81,28 @@ function stt() {
         utterance.text = output;
         speechSynthesis.speak(utterance);
         utterance.onend = function() {
-            console.log('executed stt')
+            console.log('executed stt');
         };
     };
-    sro.onend = event => {
-        utterance.text = 'Error merekam input';
-        utterance.onend = function() {
-            console.log('executed stt')
-        };
-    }
+    sro.onspeechend = event => {
+        setTimeout(function() {
+            if (!record_success) {
+                status.innerHTML = 'Error merekam input, mohon coba lagi';
+                utterance.text = 'Error merekam input';
+                text.innerText = 'Error merekam input, mohon coba lagi';
+            };
+        }, 2000)
+    };
+    utterance.onend = function() {
+        console.log('executed stt');
+    };
     sro.start();
 };
 
 document.addEventListener('visibilitychange', function() {
     if (document.hidden) {
         speechSynthesis.cancel();
-        sro.stop()
+        sro.stop();
     };
 });
 
